@@ -37,20 +37,19 @@ All are Q4_K_M quantized GGUF files downloaded from Hugging Face the first time 
 
 Sizes are the estimates coded in the app; real files can differ slightly.
 
+![Fig. 1: Scatter chart of the seven models in the catalog, with download size on the horizontal axis and minimum RAM on the vertical axis. Three models need 2 GB, one needs 3 GB, two need 4 GB and Mistral 7B needs 8 GB.](figures/fig1-model-catalog.png)
+
+*Figure 1. The model catalog: download size against minimum RAM, with the device tier encoded by both shape and colour. These are the values coded in the app, not measurements.*
+
 ## How it is built
 
-```mermaid
-flowchart TB
-  UI[Chat UI, model explorer, drawers] --> Main[Main page orchestrator]
-  Main --> Prompt[System prompt engine<br/>per model family]
-  Main --> Kit[flutter_local_agent_kit<br/>on-device inference + sessions]
-  Main --> RAM[Device RAM check<br/>tier and compatibility]
-  Main --> DL[Download manager<br/>progress, cancel, cleanup, notification]
-  Main --> KB[Knowledge base<br/>file ingestion, citations]
-  Main --> MCP[Optional MCP server]
-  Kit --> Disk[(Models and chats<br/>on the device)]
-  Main -. license flag .-> FS[(Firestore<br/>license/status)]
-```
+![Fig. 2: Architecture and data boundary. On the phone: chat UI, system prompt engine, flutter_local_agent_kit, model files, session store, knowledge base and RAM check. Components that use the network are dashed: the download manager (Hugging Face), the license listener (Firebase Firestore) and the optional MCP client (your own server).](figures/fig2-architecture-data-boundary.png)
+
+*Figure 2. Architecture and data boundary. Green blocks stay on the phone. Dashed orange-red blocks use the network, and each is paired with the external service it talks to.*
+
+![Fig. 3: Flow from a message to a reply. The message goes through the system prompt engine and history pruning to on-device inference, with optional knowledge-base passages, then into a streaming chat bubble and the session store.](figures/fig3-message-flow.png)
+
+*Figure 3. From a message to a reply. Once a model is downloaded, none of these steps needs the network.*
 
 The app is one large file, `lib/main.dart` (about 6,000 lines), organised in numbered sections: license service, colour tokens, theme, device RAM, system prompts, model catalog, sessions, download notifier, chat bubble, welcome view, full chat view, model explorer, dialogs, MCP and knowledge sheets, app entry point and the main page. Splitting it into feature modules is on the roadmap.
 
@@ -91,6 +90,7 @@ lib/main.dart                       app, UI, model catalog, chat, license listen
 lib/firebase_options.dart.example   template for your own Firebase config
 android/                            Android host project
 assets/                             icons and splash images
+figures/                            diagrams used in this README (PNG and SVG)
 ```
 
 ## Not verified yet
