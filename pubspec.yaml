@@ -1,0 +1,60 @@
+name: eliora_ai
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.11.3
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  flutter_local_agent_kit: any
+  file_picker: ^11.0.2
+  google_fonts: ^8.1.0
+  flutter_markdown_plus: any
+  image_picker: any
+  markdown: any
+  mcp_dart: any
+  shared_preferences: ^2.3.3
+  flutter_local_notifications: ^21.0.0
+  uuid: ^4.5.3
+  flutter_tts: any
+  tutorial_coach_mark: ^1.3.3
+  firebase_core: ^4.9.0
+  connectivity_plus: ^7.1.1
+  cloud_firestore: ^6.4.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.4.7
+
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: false
+  image_path: "assets/Eliora Ai assits-2/Eliora Ai assits/playstore-icon.png"
+  min_sdk_android: 21
+
+flutter_native_splash:
+  color: "#FFFFFF"
+  color_dark: "#000000"
+  image: "assets/splash_icon.png"
+  branding: "assets/from.png"
+  branding_dark: "assets/from.png"
+  android_12:
+    image: "assets/splash_icon.png"
+    icon_background_color: "#FFFFFF"
+    icon_background_color_dark: "#000000"
+    branding: "assets/from.png"
+    branding_dark: "assets/from.png"
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/Eliora Ai assits-2/Eliora Ai assits/playstore-icon.png
+    - assets/from.png
+    - assets/splash_icon.png
